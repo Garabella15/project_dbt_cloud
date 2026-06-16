@@ -1,0 +1,29 @@
+sources:
+  - name: sales
+    description: grain is an order per row
+    database: RAW  
+    config: 
+      freshness: 
+        warn_after: {count: 12, period: hour}
+        error_after: {count: 2, period: day}
+      loaded_at_field: loaded_at 
+    schema: sales  
+    tables:
+      - name: customer_sales
+        columns:
+          - name: transaction_id
+            description: primary key for the sales table
+            tests:
+                - unique
+                - not_null
+          - name: transaction_date
+            description: transaction date and time
+            tests:
+              - not_null
+
+       
+
+
+
+
+

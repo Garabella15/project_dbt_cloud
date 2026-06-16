@@ -1,0 +1,23 @@
+
+models:
+  - name: stg_sales__orders
+    description: standardized order-level sales records used as the staging layer for downstream sales reporting.
+    columns:
+      - name: transaction_id
+        description: unique identifier for an order transaction.
+      - name: transaction_date
+        description: date and time when the order was placed.
+      - name: store_location
+        description: store location where the order was made.
+      - name: full_name
+        description: full name of the customer who placed the order.
+      - name: product_and_price
+        description: product purchased and its listed price.
+      - name: total_amount
+        description: total amount charged for the order.
+      - name: payment_method
+        description: method used by the customer to pay for the order.
+      - name: card_number
+        description: payment card number associated with the order.
+      - name: load_datetime
+        description: timestamp when the order record was loaded into the raw sales system.

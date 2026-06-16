@@ -1,0 +1,83 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "hold product information and the flavour"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: name_of_product
+        description: "product name"
+      - name: flavour
+        description: "product flavour"
+
+  - name: dim_store
+    description: "hold the store location"
+    columns:
+      - name: store_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: store_name
+        description: "store location name"
+
+  - name: dim_customer
+    description: "hold customer informaion"
+    columns:
+      - name: customer_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: customer_skey
+        description: "stable identifier for a customer"
+      - name: first_name
+        description: "customer first name"
+      - name: last_name
+        description: "customer last name"
+      - name: card_number
+        description: "customer payment card number"
+
+  - name: fact_order
+    description: "hold transaction information about the product sold and customer"
+    columns:
+      - name: transaction_skey
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: transaction_id
+        description: "transaction identifier"
+      - name: transaction_date
+        description: "date of the transaction"
+      - name: product_id
+        description: "product purchased in the transaction"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+      - name: price
+        description: "transaction sale amount"
+      - name: payment_method
+        description: "payment method used for the transaction"
+      - name: store_id
+        description: "store where the transaction took place"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_store')
+                field: store_id
+      - name: customer_id
+        description: "customer associated with the transaction"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: load_datetime
+        description: "timestamp when the record was loaded"
