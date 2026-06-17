@@ -49,3 +49,8 @@ models:
       +materialized: table
       +schema: marts # → ANALYTICS.MARTS          ✓
       +tags: ["marts"]
+
+    Reporting:
+      +materialized: table
+      +schema: Reporting # → ANALYTICS. BI reporting         ✓
+      +tags: ["Reporting"]
