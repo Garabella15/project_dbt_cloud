@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: Average_sales_per_store
+  - name: average_sales_per_store
     description: "hold total sales per store"
     columns:
       - name: stored_id
