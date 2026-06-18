@@ -16,6 +16,7 @@ fct.price,
 fct.payment_method,
 ds.store_id,
 dc.customer_id,
+'name' as location_code,
 current_timestamp() as load_datetime
 from transaction_info as fct
 left join {{ ref('dim_store') }} as ds 
