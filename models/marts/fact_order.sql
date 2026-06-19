@@ -24,4 +24,4 @@ left join {{ ref('dim_customer') }} as dc
     on    fct.first_name = dc.first_name  
     and   fct.last_name = dc.last_name
 left join {{ ref('dim_product') }} dp 
-    on dp.name_of_product = TRIM(SPLIT_PART(fct.product_name, '-', 1))
+    on dp.product_name = fct.product_name
